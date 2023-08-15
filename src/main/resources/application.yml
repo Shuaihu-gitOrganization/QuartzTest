@@ -1,2 +1,20 @@
+#端口配置
 server:
   port: 9999
+#Spring相关配置
+spring:
+  profiles:
+    active: dev
+#日志配置
+logging:
+  pattern:
+    dateformat: yyyy-MM-dd hh:mm:ss.SSS
+  level:
+    root: info
+  file:
+    name: D://log/SpringBoot3.log
+#日志归档、切割
+logback:
+  rollingpolicy:
+    max-file-size: 1MB
+    file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.zip

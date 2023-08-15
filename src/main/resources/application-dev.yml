@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1016zsh..
+    url: jdbc:mysql://localhost:3307/securitytest
+mybatis-plus:
+  global-config:
+    banner: off
