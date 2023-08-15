@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -16,9 +17,10 @@ import java.util.UUID;
  * @Author XiaoHu
  * @Description
  **/
+@Slf4j
 public class JwtUtils {
     public static final Long JWT_TTL = 60*60*1000L;
-    public static final String JWT_KEY= "jwt_key";
+    public static final String JWT_KEY= "jwtkey";
     public static String getUUID(){
         String token = UUID.randomUUID().toString().replace("-", "");
         return token;
@@ -48,7 +50,7 @@ public class JwtUtils {
                 .signWith(algorithm,secretKey)
                 .setExpiration(expDate);
     }
-    public static String createJWT(String id,String subject,Long ttlMills){
+    public static String createJwt(String id,String subject,Long ttlMills){
         JwtBuilder builder = getJwtBuilder(subject, ttlMills, id);
         return builder.compact();
     }
@@ -58,10 +60,18 @@ public class JwtUtils {
         SecretKey key = new SecretKeySpec(decode, 0, decode.length,"AES");
         return key;
     }
-    public static Claims praseJWT(String JWT) throws Exception{
+    public static Claims praseJwt(String Jwt) throws Exception{
         SecretKey secretKey = generaKey();
         return Jwts.parser().setSigningKey(secretKey)
-                .parseClaimsJws(JWT)
+                .parseClaimsJws(Jwt)
                 .getBody();
     }
+
+   /* public static void main(String[] args) throws Exception {
+        String jwt = createJwt("12345");
+        Claims claims = praseJwt(jwt);
+        claims.getSubject();
+        log.info("{}",jwt);
+        log.info("{}",claims.getSubject());
+    }*/
 }
