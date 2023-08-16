@@ -1,6 +1,5 @@
 package com.atlucky.springsecuritytest.service;
 
-import com.atlucky.springsecuritytest.domain.LoginBody;
 import com.atlucky.springsecuritytest.domain.LoginUser;
 import com.atlucky.springsecuritytest.domain.User;
 import com.atlucky.springsecuritytest.mapper.UserMapper;

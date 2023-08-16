@@ -1,14 +1,11 @@
 package com.atlucky.springsecuritytest.controller;
 
-import com.atlucky.springsecuritytest.domain.LoginBody;
-import com.atlucky.springsecuritytest.domain.LoginUser;
 import com.atlucky.springsecuritytest.domain.User;
 import com.atlucky.springsecuritytest.service.LoginService;
 import com.atlucky.springsecuritytest.utils.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

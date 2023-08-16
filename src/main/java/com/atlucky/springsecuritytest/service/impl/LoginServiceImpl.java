@@ -1,6 +1,5 @@
 package com.atlucky.springsecuritytest.service.impl;
 
-import com.atlucky.springsecuritytest.domain.LoginBody;
 import com.atlucky.springsecuritytest.domain.LoginUser;
 import com.atlucky.springsecuritytest.domain.User;
 import com.atlucky.springsecuritytest.mapper.UserMapper;
@@ -9,12 +8,12 @@ import com.atlucky.springsecuritytest.utils.JwtUtils;
 import com.atlucky.springsecuritytest.utils.RedisCache;
 import com.atlucky.springsecuritytest.utils.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -26,13 +25,14 @@ import java.util.Objects;
 @Service
 @Slf4j
 public class LoginServiceImpl implements LoginService {
-    @Autowired
+    @Resource
     private UserMapper userMapper;
-    @Autowired
+    @Resource
     private AuthenticationManager authenticationManager;
-    @Autowired
+    @Resource
     private RedisCache redisCache;
 
+    @SuppressWarnings("rawtypes")
     @Override
     public ResponseResult login(User user) {
         //AuthenticationManager进行用户认证
