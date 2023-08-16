@@ -1,6 +1,7 @@
 package com.atlucky.springsecuritytest.controller;
 
 import com.atlucky.springsecuritytest.domain.LoginBody;
+import com.atlucky.springsecuritytest.domain.LoginUser;
 import com.atlucky.springsecuritytest.domain.User;
 import com.atlucky.springsecuritytest.service.LoginService;
 import com.atlucky.springsecuritytest.utils.ResponseResult;
@@ -20,7 +21,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     @PostMapping("/api/login")
-    public ResponseResult login(@RequestBody LoginBody loginBody){
-        return loginService.login(loginBody);
+    public ResponseResult login(@RequestBody User user){
+        return loginService.login(user);
     }
 }

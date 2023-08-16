@@ -67,11 +67,11 @@ public class JwtUtils {
                 .getBody();
     }
 
-   /* public static void main(String[] args) throws Exception {
-        String jwt = createJwt("12345");
-        Claims claims = praseJwt(jwt);
+    public static void main(String[] args) throws Exception {
+        //String jwt = createJwt("12345");
+        Claims claims = praseJwt("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhMjMyMzY2YmUxMTk0OThkOTc3MDQ2MjhmYzdjYTMxOCIsInN1YiI6IjEiLCJpc3MiOiJhZG1pbiIsImlhdCI6MTY5MjE2NDE4NiwiZXhwIjoxNjkyMTY3Nzg2fQ.puHaPAHyigJK_aLbPItSlclJ6ZTpT0b8H0tJg1F2mOA");
         claims.getSubject();
-        log.info("{}",jwt);
+       // log.info("{}",jwt);
         log.info("{}",claims.getSubject());
-    }*/
+    }
 }
