@@ -11,4 +11,6 @@ import com.atlucky.springsecuritytest.utils.ResponseResult;
 
 public interface LoginService {
     public ResponseResult login(User user);
+
+    public ResponseResult logout();
 }

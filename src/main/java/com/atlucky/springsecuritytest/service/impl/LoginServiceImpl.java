@@ -11,11 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @Date 2023/8/15 16:32
@@ -51,5 +53,19 @@ public class LoginServiceImpl implements LoginService {
         map.put("token",jwt);
         redisCache.setCacheObject("login_"+userid,loginUser);
         return new ResponseResult<>(200,"登录成功",map);
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public ResponseResult logout() {
+
+        //获取SecurityContextHolder中的用户信息（userid）
+        UsernamePasswordAuthenticationToken authentication =
+                (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        LoginUser loginUser= (LoginUser) authentication.getPrincipal();
+        String userid = loginUser.getUser().getId().toString();
+        //删除Redis中的用户信息
+        boolean b = redisCache.deleteObject("login_" + userid);
+        return new ResponseResult(200,"退出登录成功",b);
     }
 }
