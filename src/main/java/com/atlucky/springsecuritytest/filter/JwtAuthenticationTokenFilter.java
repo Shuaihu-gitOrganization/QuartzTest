@@ -50,7 +50,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throw new RuntimeException("token非法");
         }
         //从Redis中获取用户信息
-        String redisKey = "login:" + userid;
+        String redisKey = "login_" + userid;
         LoginUser loginUser = redisCache.getCacheObject(redisKey);
         if (Objects.isNull(loginUser)){
             throw new RuntimeException("用户未登录");

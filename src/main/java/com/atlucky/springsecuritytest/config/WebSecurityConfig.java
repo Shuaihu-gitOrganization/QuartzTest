@@ -1,5 +1,6 @@
 package com.atlucky.springsecuritytest.config;
 
+import com.atlucky.springsecuritytest.filter.JwtAuthenticationTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -8,6 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.annotation.Resource;
 
 /**
  * @Date 2023/8/14 15:41
@@ -17,6 +21,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Resource
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -37,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/login")
                 .anonymous()
                 .anyRequest().authenticated();
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
 
