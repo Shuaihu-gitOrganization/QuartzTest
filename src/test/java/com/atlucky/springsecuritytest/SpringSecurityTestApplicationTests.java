@@ -9,6 +9,7 @@ import org.mockito.exceptions.misusing.CannotStubVoidMethodWithReturnValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 
 import java.util.List;
 
@@ -42,6 +43,7 @@ class SpringSecurityTestApplicationTests {
     public void testPermissionsById(){
         List<String> list = menuMapper.selectPermissionsById(1L);
         list.forEach(System.out::println);
+
     }
 
 }

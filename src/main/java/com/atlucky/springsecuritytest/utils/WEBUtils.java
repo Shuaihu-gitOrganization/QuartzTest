@@ -9,6 +9,13 @@ import java.io.IOException;
  * @Description
  **/
 public class WEBUtils {
+    /**
+     * 显示字符串
+     *
+     * @param response 响应
+     * @param s        待渲染的字符串
+     * @return {@link String}
+     */
     public static String renderString(HttpServletResponse response, String s){
         try {
             response.setStatus(200);

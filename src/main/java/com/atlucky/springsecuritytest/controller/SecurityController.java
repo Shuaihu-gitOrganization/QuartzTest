@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecurityController {
 
     @GetMapping("/start")
-    @PreAuthorize("hasAuthority('sys:dept:list')")
+    @PreAuthorize("hasAuthority('sys:dept:list1')")
     public String startGet(){
         return "Hello Security";
     }

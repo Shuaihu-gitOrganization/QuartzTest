@@ -13,7 +13,7 @@ public class ResponseResult<T> {
     private String msg;
     private T data;
 
-    public ResponseResult(Integer code, String msg) {
+    public ResponseResult() {
 
         this.code = code;
         this.msg = msg;
