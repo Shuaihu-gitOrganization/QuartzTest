@@ -18,3 +18,8 @@ logback:
   rollingpolicy:
     max-file-size: 1MB
     file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.zip
+#mybatis-plus配置
+mybatis-plus:
+  mapper-locations: classpath*:com/atlucky/springsecuritytest/mapper/**/*.xml
+  global-config:
+    banner: true

@@ -1,6 +1,7 @@
 package com.atlucky.springsecuritytest;
 
 import com.atlucky.springsecuritytest.domain.User;
+import com.atlucky.springsecuritytest.mapper.MenuMapper;
 import com.atlucky.springsecuritytest.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,8 @@ import java.util.List;
 class SpringSecurityTestApplicationTests {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private MenuMapper menuMapper;
 
     @Test
     void contextLoads() {
@@ -33,6 +36,12 @@ class SpringSecurityTestApplicationTests {
         boolean matches = encoder.matches("123456",
                 "$2a$10$vX8ioKVdPXalfDwDRr6gO.oc9wMFLPUW.4xsSHKMLcKgw693XgtBK");
         log.info("{}",matches);
+    }
+
+    @Test
+    public void testPermissionsById(){
+        List<String> list = menuMapper.selectPermissionsById(1L);
+        list.forEach(System.out::println);
     }
 
 }

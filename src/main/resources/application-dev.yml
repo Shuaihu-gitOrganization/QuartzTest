@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 1016zsh..
-    url: jdbc:mysql://localhost:3307/securitytest
+    url: jdbc:mysql://localhost:3307/test
   #Redis配置
   redis:
     #IP地址
@@ -26,6 +26,3 @@ spring:
         max-active: 8
         #连接池的最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1ms
-mybatis-plus:
-  global-config:
-    banner: off
