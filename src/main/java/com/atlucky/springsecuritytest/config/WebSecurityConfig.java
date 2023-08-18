@@ -51,6 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/login")
                 .anonymous()//匿名访问，携带token不能访问
+                .antMatchers("/api/getUser").hasAuthority("sys:dept:list")
                 .antMatchers("/api/start").permitAll()//用户是否登录不影响
                 //除上面的所有请求全部需要权限认证
                 .anyRequest().authenticated();
