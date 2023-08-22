@@ -21,10 +21,12 @@ public class TestJob {
         JobDetail jobDetail = JobBuilder.newJob(MyJob.class).withIdentity("job1","group")
                 .usingJobData("test","job")
                 .usingJobData("name","job")
+                .usingJobData("count",0)
                 .build();
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("trigger", "triggerGroup")
                 .usingJobData("trigger","trigger")
+                .usingJobData("count",0)
                 .usingJobData("name","trigger")
                 .startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule()
                         .withIntervalInSeconds(1).repeatForever()).build();
