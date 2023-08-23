@@ -1,4 +1,4 @@
-package com.atlucky.quartztest;
+package com.atlucky.quartztest.quartz;
 
 import com.atlucky.quartztest.quartz.MyJob;
 import org.quartz.*;
