@@ -2,7 +2,7 @@ server:
   port: 9999
 spring:
   datasource:
-    url: mysql://localhost:3307/quartz
+    url: jdbc:mysql://localhost:3307/quartz
     password: 1016zsh..
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root

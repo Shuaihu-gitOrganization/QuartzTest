@@ -1,9 +1,10 @@
 package com.atlucky.quartztest.config;
 
 import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -13,8 +14,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.Executor;
 
 /**
  * @Date 2023/8/22 13:22
@@ -28,9 +28,8 @@ public class SchedulerConfig {
     private DataSource dataSource;
 
     @Bean
-    public Scheduler scheduler() throws IOException {
-        Scheduler scheduler = schedulerFactoryBean().getScheduler();
-        return scheduler;
+    public Scheduler scheduler() throws IOException, SchedulerException {
+        return schedulerFactoryBean().getScheduler();
     }
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean() throws IOException{
@@ -53,11 +52,11 @@ public class SchedulerConfig {
     }
 
     @Bean
-    public ThreadPoolTaskExecutor getSchedulerThreadPoolConfig(){
+    public Executor getSchedulerThreadPoolConfig(){
         ThreadPoolTaskExecutor threadPoolExecutor = new ThreadPoolTaskExecutor();
         threadPoolExecutor.setCorePoolSize(Runtime.getRuntime().availableProcessors());
         threadPoolExecutor.setMaxPoolSize(Runtime.getRuntime().availableProcessors());
         threadPoolExecutor.setQueueCapacity(Runtime.getRuntime().availableProcessors());
-        return threadPoolExecutor;
+        return (Executor) threadPoolExecutor;
     }
 }
