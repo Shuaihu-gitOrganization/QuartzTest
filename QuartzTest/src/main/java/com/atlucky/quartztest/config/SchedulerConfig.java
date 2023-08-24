@@ -39,7 +39,7 @@ public class SchedulerConfig {
         schedulerFactoryBean.setApplicationContextSchedulerContextKey("application");
         schedulerFactoryBean.setQuartzProperties(quartzProperties());
         schedulerFactoryBean.setTaskExecutor(getSchedulerThreadPoolConfig());
-        schedulerFactoryBean.setStartupDelay(10);
+        schedulerFactoryBean.setStartupDelay(0);
         return schedulerFactoryBean;
     }
 

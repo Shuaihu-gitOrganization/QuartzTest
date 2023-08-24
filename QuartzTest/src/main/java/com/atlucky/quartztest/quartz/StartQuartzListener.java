@@ -19,25 +19,57 @@ import java.util.Objects;
 public class StartQuartzListener implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private Scheduler scheduler;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        TriggerKey triggerKey = TriggerKey.triggerKey("trigger1", "triggergroup");
+
         try {
+            TriggerKey triggerKey = TriggerKey.triggerKey("trigger", "triggergroup");
             Trigger trigger = scheduler.getTrigger(triggerKey);
-            if(Objects.isNull(trigger)){
-                trigger= TriggerBuilder.newTrigger()
+            if (Objects.isNull(trigger)) {
+                trigger = TriggerBuilder.newTrigger()
                         .withIdentity(triggerKey)
                         .withSchedule(CronScheduleBuilder.cronSchedule("0/10 * * * * ?"))
+                        .startNow()
                         .build();
                 JobDetail jobDetail = JobBuilder
                         .newJob(QuartzJob.class)
-                        .withIdentity("job1", "JobGroup")
+                        .withIdentity("job", "JobGroup")
                         .build();
-                scheduler.scheduleJob(jobDetail,trigger);
+                scheduler.scheduleJob(jobDetail, trigger);
                 scheduler.start();
             }
+
         } catch (SchedulerException e) {
             throw new RuntimeException(e);
+        }
+        TriggerKey triggerKey1 = TriggerKey.triggerKey("trigger1", "triggergroup1");
+        Trigger trigger1 = null;
+        try {
+            trigger1 = scheduler.getTrigger(triggerKey1);
+        } catch (SchedulerException e) {
+            throw new RuntimeException(e);
+        }
+        if (Objects.isNull(trigger1)) {
+            trigger1 = TriggerBuilder.newTrigger()
+                    .withIdentity(triggerKey1)
+                    .withSchedule(CronScheduleBuilder.cronSchedule("0/10 * * * * ?"))
+                    .startNow()
+                    .build();
+            JobDetail jobDetail1 = JobBuilder
+                    .newJob(QuartzJob.class)
+                    .withIdentity("job1", "JobGroup1")
+                    .build();
+            try {
+                scheduler.scheduleJob(jobDetail1, trigger1);
+            } catch (SchedulerException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                scheduler.start();
+            } catch (SchedulerException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
