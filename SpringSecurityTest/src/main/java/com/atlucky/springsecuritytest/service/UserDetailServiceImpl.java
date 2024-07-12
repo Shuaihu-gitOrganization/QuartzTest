@@ -5,15 +5,12 @@ import com.atlucky.springsecuritytest.domain.User;
 import com.atlucky.springsecuritytest.mapper.MenuMapper;
 import com.atlucky.springsecuritytest.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +20,7 @@ import java.util.Objects;
  * @Description
  **/
 @Service
-public class ImpUserDetailService implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
     @Resource
     private UserMapper userMapper;
 
